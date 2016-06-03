@@ -102,8 +102,8 @@ void smtp_mail_from(connection_t *con) {
 		st_free(con->smtp.mailfrom);
 		con->smtp.mailfrom = NULL;
 		con->smtp.suggested_length = 0;
-		con_write_bl(con, "530 AUTHENTICATION REQUIRED\r\n", 52);
-		smtp_quit(con);
+		con_write_bl(con, "530 AUTHENTICATION REQUIRED\r\n", 29);
+		return;
 	}
 
 	credential_free(cred);
