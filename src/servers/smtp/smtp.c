@@ -96,8 +96,8 @@ void smtp_mail_from(connection_t *con) {
 		return;
 	}
 
-	// Requires authentication if user is not authenticated and MAIL FROM domain is hosted by this server
-	if(!con->smtp.authenticated && domain_mailboxes(cred->auth.domain) < 0) {
+	// Require authentication if user is not authenticated and MAIL FROM domain is hosted on this server
+	if(!con->smtp.authenticated && domain_mailboxes(cred->auth.domain) >= 0) {
 		credential_free(cred);
 		st_free(con->smtp.mailfrom);
 		con->smtp.mailfrom = NULL;
